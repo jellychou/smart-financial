@@ -95,7 +95,7 @@
         <img class="second_cloud" src="../assets/image/lightblue@3x.png" alt="">
     </div>
     <div class="bg_light">
-        <div class="container-xl">
+        <div class="container-fluid">
             <div class="step_1" id="step_1">
                 <div class="step_1_title">為什麼要理財？</div>
                 <div class="step_1_content">
@@ -172,16 +172,19 @@
         <img class="darkblue" src="../assets/image/darkblue.png" alt="">
     </div>
     <div class="bg-darkBlue">
-        <div class="container-xl">
+        <div class="container-fluid">
             <div class="step_4" id="step_4">
                 <div class="financial_method_title">智慧理財靠方法</div>
-                <div class="financial_method_subtitle">元大日日扣  定期定額百元投資法</div>
+                <div class="financial_method_subtitle">
+                  <div>元大日日扣</div>
+                  <div>定期定額百元投資法</div>
+                </div>
                 <ul class="d-sm-flex align-items-center justify-content-around">
                     <li>
                         <img class="pig" src="../assets/image/pig.png" alt="">
                     </li>
                     <li>
-                        <div class="invest_title">每天都是投資天</div>
+                        <div class="invest_title">每天都是投資天!</div>
                         <div class="invest_text">定期定額日日扣創造投資機會點。</div>
                         <div class="invest_text">長期紀律投資，讓定期定額微笑曲線更快發生。</div>
                         <div class="invest_button">前往了解 ></div>
@@ -286,7 +289,7 @@
         <img class="darkblue" src="../assets/image/lightblue.png" alt="">
     </div>
     <div class="bg_light">
-        <div class="container-xl">
+        <div class="container-fluid">
             <div class="step_5" id="step_5">
                 <div class="save_title">存好股 找元大</div>
                 <div class="discount_text">
@@ -302,7 +305,7 @@
                     <div class="save_tab_title">線上申購指定基金，定期（不）定額</div>
                     <div class="save_slogan">
                         <img src="../assets/image/oringin_shine.png" alt="">
-                        享終身優惠  <span>0</span> 手續費
+                        享終身優惠  <span class="number">0</span> 手續費
                         <img src="../assets/image/oringin_shine.png" alt="">
                     </div>
                     <div class="save_tab_subtitle">指定基金</div>
@@ -362,7 +365,7 @@
                     <div class="save_tab_title">線上申購指定國內 ETF，定期（不）定額</div>
                     <div class="save_slogan">
                         <img src="../assets/image/oringin_shine.png" alt="">
-                        享終身手續費<span>0.3%</span>
+                        享終身手續費<span class="number">0.3%</span>
                         <img src="../assets/image/oringin_shine.png" alt="">
                     </div>
                     <div class="save_tab_subtitle">指定國內 ETF</div>
@@ -419,7 +422,7 @@
         <img class="darkblue" src="../assets/image/darkblue.png" alt="">
     </div>
     <div class="bg-darkBlue position-relative">
-        <div class="container-xl">
+        <div class="container-fluid">
            <div class="step_6">洞悉基金動態 元大行動銀行好幫手</div>
            <ul id="tab" class="tab d-flex align-items-center justify-content-center">
                 <li :class="tabItem === 1 ? 'active_tab' : 'normal_tab'" @click="fetchTab(1)"><div>基金申購</div></li>
@@ -455,14 +458,29 @@
                       <li @click="goStep" :style="{'--bgImage': bgLine_10}" :class="getActiveNumber(9)" :key="item">09</li>
                   </ul>
                 </div>
-                <div class="d-sm-flex align-items-center justify-content-center my-5">
+                <div class="phone_mb">
+                  <div class="d-flex align-items-center justify-content-center">
+                    <img @click="preImage" class="pre_icon" src="../assets/image/previous.png" alt="">
+                    <div class="phone">
+                      <img id="phone" class="phone_body" :src="thisImage" alt="">
+                      <img class="phone_out" src="../assets/image/phone.png" alt="">
+                    </div>
+                    <img @click="nextImage" class="next_icon" src="../assets/image/next.png" alt="">
+                  </div>
+                  <div class="bubble">
+                      <img class="bubble_mb" src="../assets/image/bubble_mb.png" alt="">
+                      <div id="bubble_title" class="bubble_title">STEP{{ step }}</div>
+                      <div id="bubble_content" class="bubble_content">{{ content }}</div>
+                      <div class="step_button">前往下載 ></div>
+                  </div>
+                </div>
+                <div class="phone_pc my-5">
                     <img @click="preImage" class="pre_icon" src="../assets/image/previous.png" alt="">
                     <div class="phone">
                         <img id="phone" class="phone_body" :src="thisImage" alt="">
                         <img class="phone_out" src="../assets/image/phone.png" alt="">
                     </div>
                     <div class="bubble">
-                        <img class="bubble_mb" src="../assets/image/bubble_mb.png" alt="">
                         <img class="bubble_pc" src="../assets/image/bubble.png" alt="">
                         <div id="bubble_title" class="bubble_title">STEP{{ step }}</div>
                         <div id="bubble_content" class="bubble_content">{{ content }}</div>
@@ -477,7 +495,7 @@
         <img class="darkblue" src="../assets/image/white.png" alt="">
     </div>
     <div class="bg_white">
-        <div class="container-xl">
+        <div class="container-fluid">
             <div class="third">
                 <div class="third_title">立即加入官方社群 隨時掌握元大銀行最新消息</div>
                 <div class="d-flex align-items-center justify-content-center">
@@ -525,7 +543,7 @@
         <img class="second_cloud" src="../assets/image/lightblue@3x.png" alt="">
     </div>
     <div class="bg_light">
-        <div class="container-xl">
+        <div class="container-fluid">
             <div class="notice">
                 <div class="notice_title">注意事項</div>
                 <div class="notice_content">
@@ -676,12 +694,12 @@ export default {
             {
               id: 1,
               content: '行動銀行首頁點基金總覽',
-              img: require('../assets/image/2-3.png')
+              img: require('../assets/image/2-1.png')
             },
             {
               id: 2,
               content: '點選百元投資',
-              img: require('../assets/image/2-3.png')
+              img: require('../assets/image/2-2.png')
             },
             {
               id: 3,
@@ -710,7 +728,7 @@ export default {
             {
               id: 1,
               content: '行動銀行首頁點基金總覽',
-              img: require('../assets/image/3-2.png')
+              img: require('../assets/image/3-1.png')
             },
             {
               id: 2,
@@ -734,7 +752,7 @@ export default {
             {
               id: 1,
               content: '行動銀行首頁點選設定',
-              img: require('../assets/image/4-2.png')
+              img: require('../assets/image/4-1.png')
             },
             {
               id: 2,
@@ -783,7 +801,7 @@ export default {
             {
               id: 1,
               content: '行動銀行首頁點選設定',
-              img: require('../assets/image/5-2.png')
+              img: require('../assets/image/5-1.png')
             },
             {
               id: 2,
@@ -1205,13 +1223,16 @@ export default {
 }
 
 .sidebar_1 {
-  position: absolute;
-  right: 300px;
+  position: fixed;
+  right: 200px;
   top: 350px;
   height: 90px;
   width: 90px;
   background-color: #ffffff;
   cursor: pointer;
+  z-index: 10;
+  box-shadow: 10px 10px 30px 0 rgba(228, 233, 240, 0.45);
+
 }
 
 @media (max-width: 1200px) {
@@ -1222,13 +1243,15 @@ export default {
 }
 
 .sidebar_2 {
-  position: absolute;
-  right: 300px;
+  position: fixed;
+  right: 200px;
   top: 450px;
   height: 90px;
   width: 90px;
   background-color: #ffffff;
   cursor: pointer;
+  z-index: 10;
+  box-shadow: 10px 10px 30px 0 rgba(228, 233, 240, 0.45);
 }
 
 @media (max-width: 1200px) {
@@ -1623,7 +1646,7 @@ export default {
 }
 
 .tab_card {
-    box-shadow: 10px 10px 30px 0 rgba(228, 233, 240, 0.45);
+    box-shadow: 10px 10px 30px 0 darkbluergba(228, 233, 240, 0.45);
     background-color: #fff;
     padding: 50px;
     position: relative;
@@ -1668,6 +1691,7 @@ export default {
 .darkblue {
     width: 100%;
     position: relative;
+    top: 4px;
 }
 
 .bg-darkBlue {
@@ -1815,6 +1839,7 @@ export default {
 
 .feature_log {
     font-size: 14px;
+    font-weight: 900;
     letter-spacing: 1.4px;
     text-align: left;
     color: #044ba8;
@@ -2242,6 +2267,13 @@ export default {
     }
 }
 
+.number {
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: 3.6px;
+  color: #fe6b00;
+}
+
 .link_icon {
     cursor: pointer;
 }
@@ -2260,7 +2292,7 @@ export default {
 }
 
 .empty_parameter {
-    height: 81px;
+    height: 36px;
 }
 
 @media (max-width: 992px) {
@@ -2433,10 +2465,19 @@ export default {
 }
 
 .four_step {
-    width: 24%;
+    width: 350px;
     margin: auto;
     position: relative;
     top: -30px;
+}
+
+@media (max-width: 576px) {
+  .four_step {
+    width: 80%;
+    margin: auto;
+    position: relative;
+    top: -30px;
+  }
 }
 
 .four_step > li:after {
@@ -2450,11 +2491,33 @@ export default {
     background-image: -webkit-gradient(linear, 0% 100%, 100% 100%, color-stop(var(--bgImage), #044ba8), color-stop(var(--bgImage), #91bffb))
 }
 
+@media (max-width: 576px) {
+  .four_step > li:after {
+    content: "";
+    position: absolute;
+    width: 82%;
+    height: 3px;
+    top: 20px;
+    left: 9%;
+    z-index: -1;
+    background-image: -webkit-gradient(linear, 0% 100%, 100% 100%, color-stop(var(--bgImage), #044ba8), color-stop(var(--bgImage), #91bffb))
+  }
+}
+
 .five_step {
-    width: 30%;
+    width: 400px;
     margin: auto;
     position: relative;
     top: -30px;
+}
+
+@media (max-width: 576px) {
+  .five_step {
+    width: 80%;
+    margin: auto;
+    position: relative;
+    top: -30px;
+  }
 }
 
 .five_step > li:after {
@@ -2468,11 +2531,33 @@ export default {
     background-image: -webkit-gradient(linear, 0% 100%, 100% 100%, color-stop(var(--bgImage), #044ba8), color-stop(var(--bgImage), #91bffb))
 }
 
+@media (max-width: 576px) {
+  .five_step > li:after {
+      content: "";
+      position: absolute;
+      width: 86%;
+      height: 3px;
+      top: 20px;
+      left: 7%;
+      z-index: -1;
+      background-image: -webkit-gradient(linear, 0% 100%, 100% 100%, color-stop(var(--bgImage), #044ba8), color-stop(var(--bgImage), #91bffb))
+  }
+}
+
 .six_step {
-    width: 38%;
+    width: 500px;
     margin: auto;
     position: relative;
     top: -30px;
+}
+
+@media (max-width: 576px) {
+  .six_step {
+    width: 80%;
+    margin: auto;
+    position: relative;
+    top: -30px;
+  }
 }
 
 .six_step > li:after {
@@ -2481,17 +2566,41 @@ export default {
     width: 100%;
     height: 3px;
     background-color: #91bffb;;
-    top: 80px;
+    top: 28px;
     left: 0%;
     z-index: -1;
     background-image: -webkit-gradient(linear, 0% 100%, 100% 100%, color-stop(var(--bgImage), #044ba8), color-stop(var(--bgImage), #91bffb))
 }
 
+@media (max-width: 576px) {
+  .six_step > li:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #91bffb;;
+    top: 20px;
+    left: 0%;
+    z-index: -1;
+    background-image: -webkit-gradient(linear, 0% 100%, 100% 100%, color-stop(var(--bgImage), #044ba8), color-stop(var(--bgImage), #91bffb))
+  }
+
+}
+
 .nine_step {
-    width: 38%;
+    width: 500px;
     margin: auto;
     position: relative;
     top: -30px;
+}
+
+@media (max-width: 576px) {
+  .nine_step {
+    width: 80%;
+    margin: auto;
+    position: relative;
+    top: -30px;
+  }
 }
 
 .nine_step > li:after {
@@ -2506,13 +2615,38 @@ export default {
     background-image: -webkit-gradient(linear, 0% 100%, 100% 100%, color-stop(var(--bgImage), #044ba8), color-stop(var(--bgImage), #91bffb))
 }
 
+@media (max-width: 576px) {
+  .nine_step > li:after {
+    content: "";
+    position: absolute;
+    width: 88%;
+    height: 3px;
+    background-color: #91bffb;;
+    top: 20px;
+    left: 6%;
+    z-index: -1;
+    background-image: -webkit-gradient(linear, 0% 100%, 100% 100%, color-stop(var(--bgImage), #044ba8), color-stop(var(--bgImage), #91bffb))
+  }
+}
+
 .nine_2_step {
-    width: 18%;
+    width: 250px;
     margin: auto;
     position: relative;
     top: -30px;
     margin-top: 30px;
 }
+
+@media (max-width: 576px) {
+  .nine_2_step {
+    width: 40%;
+    margin: auto;
+    position: relative;
+    top: -30px;
+    margin-top: 30px;
+  }
+}
+
 .nine_2_step > li:after {
     content: "";
     position: absolute;
@@ -2525,18 +2659,32 @@ export default {
     background-image: -webkit-gradient(linear, 0% 100%, 100% 100%, color-stop(var(--bgImage), #044ba8), color-stop(var(--bgImage), #91bffb))
 }
 
+@media (max-width: 576px) {
+  .nine_2_step > li:after {
+    content: "";
+    position: absolute;
+    width: 75%;
+    height: 3px;
+    background-color: #91bffb;;
+    top: 20px;
+    left: 12%;
+    z-index: -1;
+    background-image: -webkit-gradient(linear, 0% 100%, 100% 100%, color-stop(var(--bgImage), #044ba8), color-stop(var(--bgImage), #91bffb))
+}
+
+}
 .number_step > li:first-child:after {
     content: none;
 }
 
-@media (max-width: 576px) {
-    .number_step {
-        width: 300px;
-        margin: auto;
-        position: relative;
-        top: -20px;
-    }
-}
+//@media (max-width: 576px) {
+//    .number_step {
+//        width: 300px;
+//        margin: auto;
+//        position: relative;
+//        top: -20px;
+//    }
+//}
 
 .number_step > .active_number {
     font-size: 22px;
@@ -2597,7 +2745,7 @@ export default {
 
 .phone {
     position: relative;
-    height: 430px;
+    height: 433px;
     width: 200px;
     overflow-y: scroll;
     border-radius: 17px;
@@ -2622,6 +2770,28 @@ export default {
     top: 3px
 }
 
+.phone_mb {
+  display: none;
+}
+
+@media (max-width: 576px) {
+    .phone_mb {
+       display: block;
+    }
+}
+
+.phone_pc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 576px) {
+    .phone_pc {
+       display: none;
+    }
+}
+
 .bubble {
     position: relative;
     top: -90px;
@@ -2632,7 +2802,7 @@ export default {
     .bubble {
         position: relative;
         top: -13px;
-        left: 10px;
+        left: 12px;
     }
 }
 
@@ -2764,6 +2934,9 @@ export default {
 }
 
 .third_icon {
+  display: grid;
+  align-content: center;
+  justify-items: center;
   cursor: pointer;
 }
 
@@ -2889,9 +3062,11 @@ ol > div {
 
 @media (max-width: 576px) {
     .footer {
-       font-size: 14px;
-       text-align: left;
-       padding: 0 20px;
+      font-size: 14px;
+      text-align: left;
+      padding: 0 20px;
+      position: relative;
+      bottom: 76px
     }
 }
 
@@ -2901,17 +3076,29 @@ ol > div {
 
 @media (max-width: 992px) {
   .open_account {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: #fff;
+    z-index: 10;
   }
 }
 
 @media (max-width: 576px) {
   .open_account {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: #fff;
+    z-index: 10;
   }
 }
 
@@ -2943,9 +3130,9 @@ ol > div {
 .to_top {
     position: fixed;
     right: 20px;
-    bottom: 20px;
+    bottom: 100px;
     cursor: pointer;
-    z-index: 1;
+    z-index: 12;
 }
 
 .to_top > div {
@@ -2990,9 +3177,33 @@ ol > div {
     padding-left: 30px;
 }
 
+@media (max-width: 992px) {
+  .next_icon {
+    padding-left: 0px;
+  }
+}
+
+@media (max-width: 576px) {
+  .next_icon {
+    padding-left: 0px;
+  }
+}
+
 .pre_icon {
     cursor: pointer;
     padding-right: 50px;
+}
+
+@media (max-width: 992px) {
+  .pre_icon {
+    padding-right: 0px;
+  }
+}
+
+@media (max-width: 576px) {
+  .pre_icon {
+    padding-right: 0px;
+  }
 }
 
 @keyframes transMenu {
