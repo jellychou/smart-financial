@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: '/infinite-scroll/'
+  publicPath: '/smart-financial/'
 }
