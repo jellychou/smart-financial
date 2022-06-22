@@ -74,6 +74,10 @@
       </div>
     </nav>
     <div class="banner">
+        <div class="home_slogan">
+          <img src="../assets/image/top_title.png" alt="">
+          <div class="home_logo">理財道路上的最佳夥伴</div>
+        </div>
         <img class="scene" src="../assets/image/top_back.png" alt="">
         <img class="scene" src="../assets/image/top_medium.png" alt="">
         <img class="scene" src="../assets/image/top_front.png" alt="">
@@ -87,8 +91,8 @@
         </div>
     </div>
     <div class="banner_mb">
-        <div class="home_slogan">
-          <img src="../assets/image/top_title.png" alt="">
+        <div>
+          <img src="../assets/image/title_mb.png" alt="">
           <div class="home_logo">理財道路上的最佳夥伴</div>
         </div>
         <img class="scene" src="../assets/image/back.png" alt="">
@@ -125,18 +129,24 @@
             <ul class="d-sm-flex align-items-center justify-content-around">
                 <li class="tips_card">
                     <img src="../assets/image/icon1.png" alt="">
-                    <div class="tips_title">神奇的複利效應</div>
-                    <div class="tips_content">及早開始，紀律投資，投資效益就會如滾雪球一樣越滾越大</div>
+                    <div>
+                      <div class="tips_title">神奇的複利效應</div>
+                      <div class="tips_content">及早開始，紀律投資，投資效益就會如滾雪球一樣越滾越大</div>
+                    </div>
                 </li>
                 <li class="tips_card">
                     <img src="../assets/image/icon2.png" alt="">
-                    <div class="tips_title">專注於長期趨勢</div>
-                    <div class="tips_content">定期投入，降低平均成本，讓資產跟著市場一起成長</div>
+                    <div>
+                      <div class="tips_title">專注於長期趨勢</div>
+                      <div class="tips_content">定期投入，降低平均成本，讓資產跟著市場一起成長</div>
+                    </div>
                 </li>
                 <li class="tips_card">
                     <img src="../assets/image/icon3.png" alt="">
-                    <div class="tips_title">小額輕鬆開始</div>
-                    <div class="tips_content">小資金也能投資，基金、ETF 理財無負擔</div>
+                    <div>
+                      <div class="tips_title">小額輕鬆開始</div>
+                      <div class="tips_content">小資金也能投資，基金、ETF 理財無負擔</div>
+                    </div>
                 </li>
             </ul>
             <div class="step_3">
@@ -1063,6 +1073,19 @@ export default {
   background-image: linear-gradient(to top, #002d68 0%, #104c9c 100%);
 }
 
+@media (max-width: 576px) {
+  .home_logo {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.92;
+    letter-spacing: 3.9px;
+    color: #fff;
+    width: 300px;
+    text-align: center;
+    background-image: linear-gradient(to top, #002d68 0%, #104c9c 100%);
+  }
+}
+
 @media (max-width: 992px) {
     .header_item {
         display: none;
@@ -1223,6 +1246,12 @@ export default {
 .home_logo {
   margin: auto;
   margin-top: 20px
+}
+
+.home_slogan {
+    position: absolute;
+    top: 226px;
+    left: 144px;
 }
 
 .banner_mb {
@@ -1587,8 +1616,12 @@ export default {
 
 @media (max-width: 576px) {
     .tips_card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         padding: 10px;
         width: 100%;
+        height: 240px;
         margin-bottom: 30px;
     }
 }
