@@ -1224,7 +1224,7 @@ export default {
 
 .sidebar_1 {
   position: fixed;
-  right: 200px;
+  right: 20px;
   top: 350px;
   height: 90px;
   width: 90px;
@@ -1244,7 +1244,7 @@ export default {
 
 .sidebar_2 {
   position: fixed;
-  right: 200px;
+  right: 20px;
   top: 450px;
   height: 90px;
   width: 90px;
