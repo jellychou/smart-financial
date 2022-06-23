@@ -192,6 +192,7 @@
                 <div class="financial_method_subtitle">
                   <div>元大日日扣</div>
                   <div>定期定額百元投資法</div>
+                  <img class="shine" src="../assets/image/shine.png" alt="">
                 </div>
                 <ul class="d-sm-flex align-items-center justify-content-around">
                     <li>
@@ -216,7 +217,7 @@
                     <li class="d-flex align-items-center feature_card">
                         <img src="../assets/image/feature2.png" alt="">
                         <div class="feature">
-                            <div class="feature_log">Feature 1</div>
+                            <div class="feature_log">Feature 2</div>
                             <div class="feature_title">分散風險</div>
                             <div class="feature_content">市場波動時，透過更頻繁的扣款次數或調整扣款金額，例如分拆為多次較小額資金，有助於進一步分散進場時間點的風險。</div>
                         </div>
@@ -1366,6 +1367,7 @@ export default {
 .second_cloud {
     position: relative;
     width: 100%;
+    top: 6px;
 }
 
 @media (max-width: 992px) {
@@ -1377,7 +1379,7 @@ export default {
 }
 
 .sec_1 {
-    width: 100%;
+    width: 500px;
 }
 
 @media (max-width: 992px) {
@@ -1395,7 +1397,7 @@ export default {
 }
 
 .save_sec {
-    width: 100%;
+    width: 45%;
 }
 
 @media (max-width: 992px) {
@@ -1635,7 +1637,7 @@ export default {
 .tips_card {
     box-shadow: 10px 10px 30px 0 rgba(228, 233, 240, 0.45);
     background-color: #fff;
-    padding: 50px;
+    padding: 30px;
     width: 30%;
     display: grid;
     align-content: center;
@@ -1667,10 +1669,10 @@ export default {
     font-weight: bold;
     line-height: 1.59;
     letter-spacing: 2.2px;
-    text-align: left;
+    text-align: center;
     color: #021835;
-    padding-top: 150px;
-    padding-bottom: 80px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 @media (max-width: 992px) {
@@ -1682,6 +1684,7 @@ export default {
 
 @media (max-width: 576px) {
     .tips_title {
+        text-align: left;
         padding-top: 30px;
         padding-bottom: 30px;
     }
@@ -1732,7 +1735,7 @@ export default {
     margin-left: 10px;
     text-align: left;
     font-size: 16px;
-    line-height: 1.56;
+    line-height: 2;
     letter-spacing: 0.8px;
     text-align: left;
     color: #021835;
@@ -1856,12 +1859,23 @@ export default {
     color: #002d68;
     padding-top: 50px;
     padding-bottom: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (max-width: 576px) {
     .financial_method_subtitle {
         font-size: 22px;
         padding: 50px 30px;
+        display: grid;
+        align-content: center;
+        justify-items: center;
+    }
+    .financial_method_subtitle > .shine {
+        position: relative;
+        right: -80px;
+        top: -80px
     }
 }
 
@@ -2265,6 +2279,7 @@ export default {
 
 .save {
     width: 45%;
+    height: 650px;
     box-shadow: 10px 10px 30px 0 rgba(228, 233, 240, 0.45);
     background-color: #fff;
     position: relative;
@@ -2274,12 +2289,14 @@ export default {
 @media (max-width: 992px) {
     .save {
         width: 49.5%;
+        height: 750px;
     }
 }
 
 @media (max-width: 576px) {
     .save {
         width: 100%;
+        margin-top: 100px;
         padding-bottom: 40px;
     }
 }
@@ -2532,7 +2549,7 @@ export default {
     line-height: 1.59;
     letter-spacing: 2.2px;
     color: #ffffff;
-    background-image: linear-gradient(to top, #208fff 100%, #71b8ff 0%);
+    background-image: linear-gradient(to top, #208fff 0%, #71b8ff 100%);
 }
 
 @media (max-width: 992px) {
