@@ -439,14 +439,28 @@
     <div class="bg-darkBlue position-relative">
         <div class="container">
            <div class="step_6" ref="step_6">洞悉基金動態 元大行動銀行好幫手</div>
-           <ul class="tab d-flex align-items-center justify-content-center">
+           <ul class="tab">
                 <li :class="tabItem === 1 ? 'active_tab' : 'normal_tab'" @click="fetchTab(1)"><div>基金申購</div></li>
                 <li :class="tabItem === 2 ? 'active_tab' : 'normal_tab'" @click="fetchTab(2)"><div>百元投資</div></li>
                 <li :class="tabItem === 3 ? 'active_tab' : 'normal_tab'" @click="fetchTab(3)"><div>基金總覽</div></li>
                 <li :class="tabItem === 4 ? 'active_tab' : 'normal_tab'" @click="fetchTab(4)"><div>基金到價通知</div></li>
                 <li :class="tabItem === 5 ? 'active_tab' : 'normal_tab'" @click="fetchTab(5)"><div>基金損益通知</div></li>
            </ul>
-           <div class="single_subscription">
+           <div class="tab_mb">
+             <img  @click="scrollLeft" src="../assets/image/nexarrow.png" style="transform: rotate(180deg);" alt="">
+             <div id="container" style="width: 80%;margin:auto;position: relative;left: 0;right: 0;overflow-x: scroll;transition: left 0.3s ease-out;">
+               <ul style="display:inline-flex">
+                    <li style="width: 200px;height: 60px;display:flex;align-items: center;justify-content: center;" :class="tabItem === 1 ? 'active_tab' : 'normal_tab'" @click="fetchTab(1)"><div>基金申購</div></li>
+                    <li style="width: 200px;height: 60px;display:flex;align-items: center;justify-content: center;" :class="tabItem === 2 ? 'active_tab' : 'normal_tab'" @click="fetchTab(2)"><div>百元投資</div></li>
+                    <li style="width: 200px;height: 60px;display:flex;align-items: center;justify-content: center;" :class="tabItem === 3 ? 'active_tab' : 'normal_tab'" @click="fetchTab(3)"><div>基金總覽</div></li>
+                    <li style="width: 200px;height: 60px;display:flex;align-items: center;justify-content: center;" :class="tabItem === 4 ? 'active_tab' : 'normal_tab'" @click="fetchTab(4)"><div>基金到價通知</div></li>
+                    <li style="width: 200px;height: 60px;display:flex;align-items: center;justify-content: center;" :class="tabItem === 5 ? 'active_tab' : 'normal_tab'" @click="fetchTab(5)"><div>基金損益通知</div></li>
+               </ul>
+             </div>
+             <div style="background-image: linear-gradient(to left, #c2e6ff 0%, rgba(194, 230, 255, 0) 100%);width: 50px;position: absolute;height: 60px;right: 38px"></div>
+             <img @click="scrollRight" src="../assets/image/nexarrow.png" alt="">
+           </div>
+          <div class="single_subscription">
                 <div class="single_title">基金單筆申購流程教學</div>
                 <div class="single_subtitle">簡單幾步驟 快速完成基金單筆申購</div>
                 <ul v-if="stepNumber === 4" class="number_step d-flex align-items-center justify-content-between four_step">
@@ -678,6 +692,7 @@ export default {
       total: 0,
       cost: 0,
       profit: 0,
+      tabWidth: 0,
       phoneImage: [
         {
           step: [
@@ -864,6 +879,13 @@ export default {
             }
           ]
         }
+      ],
+      tabs: [
+        '基金申購',
+        '百元投資',
+        '基金總覽',
+        '基金到價通知',
+        '基金損益通知'
       ]
     }
   },
@@ -918,10 +940,13 @@ export default {
           this.bgLine_10 += 0.24
         }
       }
-      setTimeout(() => {
+      setInterval(() => {
         this.isPhoneShow = true
-      }, 3450)
-      this.isPhoneShow = false
+      }, 3500)
+
+      setInterval(() => {
+        this.isPhoneShow = false
+      }, 3000)
     },
     preImage () {
       if (this.step === 1) return
@@ -1048,11 +1073,37 @@ export default {
         left: 0,
         behavior: 'smooth'
       })
+    },
+    scrollRight () {
+      var container = document.getElementById('container')
+      this.sideScroll(container, 'right', 25, 100, 10)
+    },
+    scrollLeft () {
+      var container = document.getElementById('container')
+      this.sideScroll(container, 'left', 25, 100, 10)
+    },
+    sideScroll (element, direction, speed, distance, step) {
+      let scrollAmount = 0
+      var slideTimer = setInterval(function () {
+        if (direction === 'left') {
+          element.scrollLeft -= step
+        } else {
+          element.scrollLeft += step
+        }
+        scrollAmount += step
+        if (scrollAmount >= distance) {
+          window.clearInterval(slideTimer)
+        }
+      }, speed)
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+
+html {
+  scroll-behavior: smooth;
+}
 .container-fluid {
     max-width: 1600px;
     margin: 0 auto;
@@ -2497,6 +2548,7 @@ export default {
         width: 300px;
         font-size: 24px;
         padding: 13px 20px;
+        margin-bottom: 30px;
     }
 }
 
@@ -2505,11 +2557,14 @@ export default {
     margin-bottom: 0;
     width: 100%;
     padding-left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (max-width: 576px) {
     .tab {
-       overflow: scroll;
+       display: none;
     }
 }
 
@@ -2525,6 +2580,17 @@ export default {
 
 .tab > li:first-child > div {
     border-left: none;
+}
+
+.tab_mb {
+   display: none;
+}
+@media (max-width: 576px) {
+  .tab_mb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .active_tab {
