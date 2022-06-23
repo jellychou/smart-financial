@@ -103,7 +103,7 @@
         <img class="second_cloud" src="../assets/image/lightblue@3x.png" alt="">
     </div>
     <div class="bg_light">
-        <div class="container-fluid">
+        <div class="container">
             <div class="step_1" ref="step_1">
                 <div class="step_1_title">為什麼要理財？</div>
                 <div class="step_1_content">
@@ -186,7 +186,7 @@
         <img class="darkblue" src="../assets/image/darkblue.png" alt="">
     </div>
     <div class="bg-darkBlue">
-        <div class="container-fluid">
+        <div class="container">
             <div class="step_4" ref="step_2">
                 <div class="financial_method_title">智慧理財靠方法</div>
                 <div class="financial_method_subtitle">
@@ -275,21 +275,21 @@
                             <li class="total_card">
                                 <div class="total_title">投資到期總金額</div>
                                 <div class="d-flex justify-content-center pt-3">
-                                    <div class="dashed_dollar"></div>
+                                    <div class="dashed_dollar">{{ total }}</div>
                                     <span class="total_unit">元</span>
                                 </div>
                             </li>
                             <li class="total_card">
-                                <div class="total_title">投資到期總金額</div>
+                                <div class="total_title">投資成本</div>
                                 <div class="d-flex justify-content-center pt-3">
-                                    <div class="dashed_dollar"></div>
+                                    <div class="dashed_dollar">{{ cost }}</div>
                                     <span class="total_unit">元</span>
                                 </div>
                             </li>
                             <li class="total_card">
-                                <div class="total_title">投資到期總金額</div>
+                                <div class="total_title">投資獲利</div>
                                 <div class="d-flex justify-content-center pt-3">
-                                    <div class="dashed_dollar"></div>
+                                    <div class="dashed_dollar">{{ profit }}</div>
                                     <span class="total_unit">元</span>
                                 </div>
                             </li>
@@ -303,7 +303,7 @@
         <img class="darkblue" src="../assets/image/lightblue.png" alt="">
     </div>
     <div class="bg_light">
-        <div class="container-fluid">
+        <div class="container">
             <div class="step_5" ref="step_3">
                 <div class="save_title">存好股 找元大</div>
                 <div class="discount_text">
@@ -436,7 +436,7 @@
         <img class="darkblue" src="../assets/image/darkblue.png" alt="">
     </div>
     <div class="bg-darkBlue position-relative">
-        <div class="container-fluid">
+        <div class="container">
            <div class="step_6" ref="step_6">洞悉基金動態 元大行動銀行好幫手</div>
            <ul class="tab d-flex align-items-center justify-content-center">
                 <li :class="tabItem === 1 ? 'active_tab' : 'normal_tab'" @click="fetchTab(1)"><div>基金申購</div></li>
@@ -509,7 +509,7 @@
         <img class="darkblue" src="../assets/image/white.png" alt="">
     </div>
     <div class="bg_white">
-        <div class="container-fluid">
+        <div class="container">
             <div class="third">
                 <div class="third_title">立即加入官方社群 隨時掌握元大銀行最新消息</div>
                 <div class="d-flex align-items-center justify-content-center">
@@ -557,7 +557,7 @@
         <img class="second_cloud" src="../assets/image/lightblue@3x.png" alt="">
     </div>
     <div class="bg_light">
-        <div class="container-fluid">
+        <div class="container">
             <div class="notice">
                 <div class="notice_title">注意事項</div>
                 <div class="notice_content">
@@ -674,6 +674,9 @@ export default {
       bgLine_5: 0,
       bgLine_6: 0,
       bgLine_9: 0,
+      total: 0,
+      cost: 0,
+      profit: 0,
       phoneImage: [
         {
           step: [
@@ -916,7 +919,7 @@ export default {
       }
       setTimeout(() => {
         this.isPhoneShow = true
-      }, 3400)
+      }, 3450)
       this.isPhoneShow = false
     },
     preImage () {
@@ -959,6 +962,9 @@ export default {
       document.documentElement.scrollTop = 0
     },
     changeSlider (val) {
+      this.total = 0
+      this.cost = 0
+      this.profit = 0
       if (val === 1) {
         this.sliderValue_1 = this.value_1
         this.blue_1 = Number(Number(this.sliderValue_1) / 20000)
@@ -969,8 +975,22 @@ export default {
         this.sliderValue_3 = this.value_3
         this.blue_3 = Number(Number(this.sliderValue_3) / 40)
       }
+      const month = this.sliderValue_3 * 12
+      const rate = this.sliderValue_2 / 100
+      for (let i = 1; i <= month; i++) {
+        const each = this.sliderValue_1 * Math.pow((1 + rate / 12), i)
+        this.total += each
+      }
+      const t = Math.round(this.total)
+      this.total = this.toCurrency(t)
+      const n = this.sliderValue_1 * this.sliderValue_3 * 12
+      this.cost = this.toCurrency(n)
+      this.profit = this.toCurrency(t - n)
     },
     inputSlider (val) {
+      this.total = 0
+      this.cost = 0
+      this.profit = 0
       if (val === 1) {
         this.value_1 = this.sliderValue_1
         this.blue_1 = Number(Number(this.sliderValue_1) / 20000)
@@ -981,6 +1001,22 @@ export default {
         this.value_3 = this.sliderValue_3
         this.blue_3 = Number(Number(this.sliderValue_3) / 40)
       }
+      const month = this.sliderValue_3 * 12
+      const rate = this.sliderValue_2 / 100
+      for (let i = 1; i <= month; i++) {
+        const each = this.sliderValue_1 * Math.pow((1 + rate / 12), i)
+        this.total += each
+      }
+      const t = Math.round(this.total)
+      this.total = this.toCurrency(t)
+      const n = this.sliderValue_1 * this.sliderValue_3 * 12
+      this.cost = this.toCurrency(n)
+      this.profit = this.toCurrency(t - n)
+    },
+    toCurrency (num) {
+      var parts = num.toString().split('.')
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+      return parts.join('.')
     },
     newPage (val) {
       if (val === 'fans') {
@@ -2123,7 +2159,12 @@ export default {
 }
 
 .dashed_dollar {
-    width: 60%;
+    width: 90%;
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-align: center;
+    color: #044ba8;
     border-bottom: 1px solid #51a8ff ;
 }
 
