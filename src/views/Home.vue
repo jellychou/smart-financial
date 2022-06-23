@@ -2882,7 +2882,7 @@ export default {
 
 .phone {
     position: relative;
-    height: 433px;
+    height: 436px;
     width: 200px;
     overflow-y: scroll;
     border-radius: 17px;
