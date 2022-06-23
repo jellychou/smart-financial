@@ -368,7 +368,7 @@
                         <div class="save_list d-flex align-items-center justify-content-between py-3 py-md-1">
                             <div class="d-flex align-items-center">
                                 <img src="../assets/image/listdot.png" alt="">
-                                <div class="save_list_title">元大台灣高股息優質龍頭基金（<span>本基金之配息來源可能為收益平準金</span>）</div>
+                                <div class="save_list_title" style="line-height: 1.56">元大台灣高股息優質龍頭基金（<span>本基金之配息來源可能為收益平準金</span>）</div>
                             </div>
                             <img class="link_icon" src="../assets/image/link.png" alt="">
                             <img class="link_active" src="../assets/image/link_active.png" alt="">
@@ -2955,7 +2955,7 @@ html {
 
 .phone {
     position: relative;
-    height: 436px;
+    height: 440px;
     width: 200px;
     overflow-y: scroll;
     border-radius: 17px;
