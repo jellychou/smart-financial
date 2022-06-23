@@ -489,7 +489,7 @@
                 </div>
                 <div class="phone_mb">
                   <div class="d-flex align-items-center justify-content-center">
-                    <img v-if="step >= stepNumber"  @click="nextImage" class="next_icon_rota" src="../assets/image/next.png" alt="">
+                    <img v-if="step <= stepNumber && step !== 1"  @click="nextImage" class="next_icon_rota" src="../assets/image/next.png" alt="">
                     <img v-else @click="preImage" class="pre_icon" src="../assets/image/previous.png" alt="">
                       <div class="phone">
                           <img id="phone" class="phone_body" :src="thisImage" alt="" :class="{ isPhoneShow : isPhoneShow}">
