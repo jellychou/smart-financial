@@ -2955,11 +2955,15 @@ html {
 
 .phone {
     position: relative;
-    height: 440px;
+    height: 433px;
     width: 200px;
     overflow-y: scroll;
     border-radius: 17px;
     box-shadow: 3px 3px 10px 0 #BCDEFF;
+}
+
+.phone::-webkit-scrollbar{
+  display:none
 }
 
 @media (max-width: 576px) {
