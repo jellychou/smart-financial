@@ -6,10 +6,11 @@
             <img src="../assets/image/logo.png" alt="">
         </a>
         <ul class="header_item">
-            <li class="px-3 border-end" @click="scrollTo('step_1')">為什麼要理財</li>
-            <li class="px-3 border-end" @click="scrollTo('step_2')">智慧理財靠方法</li>
-            <li class="px-3 border-end" @click="scrollTo('step_3')">存好股 找元大</li>
+            <li class="px-3 border_right" @click="scrollTo('step_1')">為什麼要理財</li>
+            <li class="px-3 border_right" @click="scrollTo('step_2')">智慧理財靠方法</li>
+            <li class="px-3 border_right" @click="scrollTo('step_3')">存好股 找元大</li>
             <li class="px-3 position-relative" @click="toggleMenu">基金申購與管理教學</li>
+            <div v-if="isOpen" class="border_top"></div>
             <ul class="pc_menu" :class="{ openMenu : isOpen }">
                 <li @click="scrollTo('step_6')" >
                     <img src="../assets/image/1.png" alt="">
@@ -202,7 +203,7 @@
                         <div class="invest_title">每天都是投資天!</div>
                         <div class="invest_text">定期定額日日扣創造投資機會點。</div>
                         <div class="invest_text">長期紀律投資，讓定期定額微笑曲線更快發生。</div>
-                        <div class="invest_button">前往了解 ></div>
+                        <div @click="openPage" class="invest_button">前往了解 ></div>
                     </li>
                 </ul>
                 <ul class="d-sm-flex align-items-center justify-content-around py-5">
@@ -226,9 +227,10 @@
                 <div class="step_calculation">
                     <div class="d-flex align-items-center justify-content-between calculation px-md-5 px-2">
                         <div>立即進行定期定額試算</div>
-                        <img src="../assets/image/count.png" alt="">
+                        <img v-if="isTableShow" @click="isTableShow = false" class="sort_icon" src="../assets/image/count.png" alt="">
+                        <img v-else @click="isTableShow = true" class="sort_icon" style="transform:rotate(180deg)" src="../assets/image/count.png" alt="">
                     </div>
-                    <div class="calculation_card">
+                    <div class="calculation_card" :class="isTableShow === true ? 'isTable' : 'isTableClose'">
                         <div class="card_title">輸入您的投資試算條件，模擬未來投資結果！</div>
                         <div class="tab_list mx-2 mx-md-2 mx-lg-5 range-slider" >
                             <div class="d-flex align-items-center justify-content-between py-md-3">
@@ -450,11 +452,11 @@
              <img  @click="scrollLeft" src="../assets/image/nexarrow.png" style="transform: rotate(180deg);" alt="">
              <div id="container" style="width: 80%;margin:auto;position: relative;left: 0;right: 0;overflow-x: scroll;transition: left 0.3s ease-out;">
                <ul style="display:inline-flex">
-                    <li style="width: 200px;height: 60px;display:flex;align-items: center;justify-content: center;" :class="tabItem === 1 ? 'active_tab' : 'normal_tab'" @click="fetchTab(1)"><div>基金申購</div></li>
-                    <li style="width: 200px;height: 60px;display:flex;align-items: center;justify-content: center;" :class="tabItem === 2 ? 'active_tab' : 'normal_tab'" @click="fetchTab(2)"><div>百元投資</div></li>
-                    <li style="width: 200px;height: 60px;display:flex;align-items: center;justify-content: center;" :class="tabItem === 3 ? 'active_tab' : 'normal_tab'" @click="fetchTab(3)"><div>基金總覽</div></li>
-                    <li style="width: 200px;height: 60px;display:flex;align-items: center;justify-content: center;" :class="tabItem === 4 ? 'active_tab' : 'normal_tab'" @click="fetchTab(4)"><div>基金到價通知</div></li>
-                    <li style="width: 200px;height: 60px;display:flex;align-items: center;justify-content: center;" :class="tabItem === 5 ? 'active_tab' : 'normal_tab'" @click="fetchTab(5)"><div>基金損益通知</div></li>
+                    <li style="width: 200px;height: 60px;display:flex;align-items: center;justify-content: center;" :class="tabItem === 1 ? 'active_tab' : 'normal_tab'" @click="fetchTab(1)"><div style="width: 100%;border-right: 1px solid #fff">基金申購</div></li>
+                    <li style="width: 200px;height: 60px;display:flex;align-items: center;justify-content: center;" :class="tabItem === 2 ? 'active_tab' : 'normal_tab'" @click="fetchTab(2)"><div style="width: 100%;border-right: 1px solid #fff">百元投資</div></li>
+                    <li style="width: 200px;height: 60px;display:flex;align-items: center;justify-content: center;" :class="tabItem === 3 ? 'active_tab' : 'normal_tab'" @click="fetchTab(3)"><div style="width: 100%;border-right: 1px solid #fff">基金總覽</div></li>
+                    <li style="width: 200px;height: 60px;display:flex;align-items: center;justify-content: center;" :class="tabItem === 4 ? 'active_tab' : 'normal_tab'" @click="fetchTab(4)"><div style="width: 100%;border-right: 1px solid #fff">基金到價通知</div></li>
+                    <li style="width: 200px;height: 60px;display:flex;align-items: center;justify-content: center;" :class="tabItem === 5 ? 'active_tab' : 'normal_tab'" @click="fetchTab(5)"><div style="width: 100%">基金損益通知</div></li>
                </ul>
              </div>
              <div style="background-image: linear-gradient(to left, #c2e6ff 0%, rgba(194, 230, 255, 0) 100%);width: 50px;position: absolute;height: 60px;right: 38px"></div>
@@ -489,14 +491,14 @@
                 </div>
                 <div class="phone_mb">
                   <div class="d-flex align-items-center justify-content-center">
-                    <img v-if="step <= stepNumber && step !== 1"  @click="nextImage" class="next_icon_rota" src="../assets/image/next.png" alt="">
+                    <img v-if="step <= stepNumber && step !== 1"  @click="preImage" class="next_icon_rota" src="../assets/image/next.png" alt="">
                     <img v-else @click="preImage" class="pre_icon" src="../assets/image/previous.png" alt="">
                       <div class="phone">
                           <img id="phone" class="phone_body" :src="thisImage" alt="" :class="{ isPhoneShow : isPhoneShow}">
                         <img class="phone_out" src="../assets/image/phone.png" alt="">
                       </div>
                     <img v-if="step < stepNumber"  @click="nextImage" class="next_icon" src="../assets/image/next.png" alt="">
-                    <img v-else  @click="preImage" class="pre_icon_rota" src="../assets/image/previous.png" alt="">
+                    <img v-else  @click="nextImage" class="pre_icon_rota" src="../assets/image/previous.png" alt="">
                   </div>
                   <div class="bubble">
                       <img class="bubble_mb" src="../assets/image/bubble_mb.png" alt="">
@@ -695,6 +697,7 @@ export default {
       cost: 0,
       profit: 0,
       tabWidth: 0,
+      isTableShow: false,
       phoneImage: [
         {
           step: [
@@ -925,15 +928,15 @@ export default {
       this.content = this.phoneImage[this.tabItem - 1].step[this.step - 1].content
       this.thisImage = this.phoneImage[this.tabItem - 1].step[this.step - 1].img
       if (this.step === this.phoneImage[this.tabItem - 1].step.length || this.step === 1) {
-        this.bgLine_4 += 1 / 5
-        this.bgLine_5 += 1 / 6
-        this.bgLine_6 += 0.16
-        this.bgLine_9 += 1 / 10
+        this.bgLine_4 += 0.12
+        this.bgLine_5 += 0.13
+        this.bgLine_6 += 0.08
+        this.bgLine_9 += 0.15
       } else {
-        this.bgLine_4 += 1 / 5
-        this.bgLine_5 += 1 / 6
-        this.bgLine_6 += 1 / 7
-        this.bgLine_9 += 1 / 10
+        this.bgLine_4 += 0.23
+        this.bgLine_5 += 0.25
+        this.bgLine_6 += 0.16
+        this.bgLine_9 += 0.3
       }
 
       if (this.step > 6) {
@@ -961,11 +964,11 @@ export default {
       this.isPhoneShow = false
       this.tabItem = num
       this.step = 1
-      this.bgLine_4 = 1 / 6
+      this.bgLine_4 = 0.13
       this.bgLine_5 = 0.13
-      this.bgLine_6 = 0.13
-      this.bgLine_9 = 0.13
-      this.bgLine_10 = 0.13
+      this.bgLine_6 = 0.1
+      this.bgLine_9 = 0.1
+      this.bgLine_10 = 0.1
       this.stepNumber = this.phoneImage[this.tabItem - 1].step.length
       this.content = this.phoneImage[this.tabItem - 1].step[this.step - 1].content
       this.thisImage = this.phoneImage[this.tabItem - 1].step[this.step - 1].img
@@ -1102,11 +1105,20 @@ export default {
           window.clearInterval(slideTimer)
         }
       }, speed)
+    },
+    openPage () {
+      window.open('https://onelink.to/z3ucjp')
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+
+img {
+    image-rendering: -moz-crisp-edges; /* Firefox */
+    image-rendering: -o-crisp-edges; /* Opera */
+    image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
+    image-rendering: crisp-edges;    -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */}
 
 html {
   scroll-behavior: smooth;
@@ -1155,6 +1167,19 @@ html {
 .header_item > li {
     cursor: pointer;
     z-index: 1;
+}
+
+.border_right {
+  border-right: 1px solid #002d68;
+}
+
+.border_top {
+  position: absolute;
+  top: -27px;
+  right: 10px;
+  width: 180px;
+  height: 10px;
+  background-color: #91bffb;
 }
 
 .home_logo {
@@ -1208,6 +1233,14 @@ html {
     .menu {
         display: block;
     }
+}
+
+.isTable {
+  animation: fadeIn 2s
+}
+
+.isTableClose {
+  display: none;
 }
 
 .menu_list {
@@ -1315,7 +1348,7 @@ html {
 
 .banner {
     position: relative;
-    height: 910px;
+    height: 700px;
     max-height: 100%;
     display: block;
 }
@@ -1347,6 +1380,7 @@ html {
     position: absolute;
     top: 226px;
     left: 144px;
+    z-index: 1;
 }
 
 .banner_mb {
@@ -1473,12 +1507,12 @@ html {
 
 .step_1 {
     position: relative;
-    top: -300px;
+    top: -150px;
     text-align: center;
     box-shadow: 10px 10px 30px 0 rgba(228, 233, 240, 0.45);
     background-color: #ffffff;
     padding: 80px;
-    width: 70%;
+    width: 88%;
     margin: auto;
 }
 
@@ -1522,7 +1556,7 @@ html {
     margin: auto;
     padding: 10px 0;
     position: absolute;
-    top: -50px;
+    top: -32px;
     left: 50%;
     transform: translate(-50%, 5%);
 }
@@ -1620,7 +1654,7 @@ html {
 .container {
     margin: 0 auto;
     position: relative;
-    top: -170px;
+    top: -230px;
 }
 
 @media (max--width: 992px) {
@@ -2063,14 +2097,14 @@ html {
 .step_calculation {
     width: 80%;
     margin: auto;
-    padding-bottom: 50px;
+    //padding-bottom: 50px;
 }
 
 @media (max-width: 992px) {
     .step_calculation {
         width: 95%;
         margin: auto;
-        padding-bottom: 50px;
+        //padding-bottom: 50px;
     }
 }
 
@@ -2078,7 +2112,7 @@ html {
     .step_calculation {
         width: 100%;
         margin: auto;
-        padding-bottom: 50px;
+        //padding-bottom: 50px;
     }
 }
 
@@ -3261,7 +3295,7 @@ ol > div {
     letter-spacing: 0.8px;
     text-align: center;
     color: #021835;
-    margin-top: 30px;
+    margin: 30px 0;
 }
 
 .footer {
@@ -3273,11 +3307,13 @@ ol > div {
     align-content: center;
     justify-items: center;
     color: #ffffff;
+    font-size: 14px;
+    line-height: 1.79;
+    letter-spacing: 0.7px;
 }
 
 @media (max-width: 992px) {
    .footer {
-      //font-size: 14px;
       text-align: left;
       padding: 0 20px;
       position: relative;
@@ -3287,7 +3323,6 @@ ol > div {
 
 @media (max-width: 576px) {
     .footer {
-      font-size: 14px;
       text-align: left;
       padding: 0 20px;
       position: relative;
@@ -3437,6 +3472,10 @@ ol > div {
 
 .pre_icon_rota {
   transform: rotate(180deg);
+}
+
+.sort_icon {
+  cursor: pointer;
 }
 
 @keyframes transMenu {
