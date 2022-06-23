@@ -489,12 +489,14 @@
                 </div>
                 <div class="phone_mb">
                   <div class="d-flex align-items-center justify-content-center">
-                    <img @click="preImage" class="pre_icon" src="../assets/image/previous.png" alt="">
+                    <img v-if="step >= stepNumber"  @click="nextImage" class="next_icon_rota" src="../assets/image/next.png" alt="">
+                    <img v-else @click="preImage" class="pre_icon" src="../assets/image/previous.png" alt="">
                       <div class="phone">
                           <img id="phone" class="phone_body" :src="thisImage" alt="" :class="{ isPhoneShow : isPhoneShow}">
                         <img class="phone_out" src="../assets/image/phone.png" alt="">
                       </div>
-                    <img @click="nextImage" class="next_icon" src="../assets/image/next.png" alt="">
+                    <img v-if="step < stepNumber"  @click="nextImage" class="next_icon" src="../assets/image/next.png" alt="">
+                    <img v-else  @click="preImage" class="pre_icon_rota" src="../assets/image/previous.png" alt="">
                   </div>
                   <div class="bubble">
                       <img class="bubble_mb" src="../assets/image/bubble_mb.png" alt="">
@@ -917,6 +919,7 @@ export default {
       }, 3500)
     },
     nextImage () {
+      this.isPhoneShow = false
       if (this.step === this.phoneImage[this.tabItem - 1].step.length) return
       this.step++
       this.content = this.phoneImage[this.tabItem - 1].step[this.step - 1].content
@@ -943,18 +946,19 @@ export default {
       setInterval(() => {
         this.isPhoneShow = true
       }, 3500)
-
-      setInterval(() => {
-        this.isPhoneShow = false
-      }, 3000)
     },
     preImage () {
+      this.isPhoneShow = false
       if (this.step === 1) return
       this.step--
       this.content = this.phoneImage[this.tabItem - 1].step[this.step - 1].content
       this.thisImage = this.phoneImage[this.tabItem - 1].step[this.step - 1].img
+      setInterval(() => {
+        this.isPhoneShow = true
+      }, 3500)
     },
     fetchTab (num) {
+      this.isPhoneShow = false
       this.tabItem = num
       this.step = 1
       this.bgLine_4 = 1 / 6
@@ -965,6 +969,9 @@ export default {
       this.stepNumber = this.phoneImage[this.tabItem - 1].step.length
       this.content = this.phoneImage[this.tabItem - 1].step[this.step - 1].content
       this.thisImage = this.phoneImage[this.tabItem - 1].step[this.step - 1].img
+      setInterval(() => {
+        this.isPhoneShow = true
+      }, 3500)
     },
     goStep (e) {
       this.step = e.target.innerText.split('')[1]
@@ -2943,7 +2950,7 @@ html {
 }
 
 .isPhoneShow {
-  animation: fadeIn 1.5s;
+  animation: fadeIn 2s;
 }
 
 .phone {
@@ -3403,6 +3410,10 @@ ol > div {
   }
 }
 
+.next_icon_rota {
+  transform: rotate(180deg);
+}
+
 .pre_icon {
     cursor: pointer;
     padding-right: 50px;
@@ -3418,6 +3429,10 @@ ol > div {
   .pre_icon {
     padding-right: 0px;
   }
+}
+
+.pre_icon_rota {
+  transform: rotate(180deg);
 }
 
 @keyframes transMenu {
